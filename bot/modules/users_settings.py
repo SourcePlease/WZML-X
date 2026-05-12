@@ -322,6 +322,7 @@ async def get_user_settings(from_user, stype="main"):
                 "HYBRID_LEECH",
                 "STOP_DUPLICATE",
                 "DEFAULT_UPLOAD",
+                "MERGE_VIDEO",
             ]
         ):
             buttons.data_button(
@@ -801,6 +802,17 @@ async def get_user_settings(from_user, stype="main"):
             )
             display_subtitle_meta = f"<code>{display_subtitle_meta}</code>"
 
+        if user_dict.get("MERGE_VIDEO", False):
+            merge_video_status = "Enabled"
+            buttons.data_button(
+                "Disable Merge Video", f"userset {user_id} tog MERGE_VIDEO f"
+            )
+        else:
+            merge_video_status = "Disabled"
+            buttons.data_button(
+                "Enable Merge Video", f"userset {user_id} tog MERGE_VIDEO t"
+            )
+
         buttons.data_button("Back", f"userset {user_id} back", "footer")
         buttons.data_button("Close", f"userset {user_id} close", "footer")
         btns = buttons.build_menu(2)
@@ -813,7 +825,8 @@ async def get_user_settings(from_user, stype="main"):
 ┠ <b>Default Metadata</b> → {display_meta_val}
 ┠ <b>Audio Metadata</b> → {display_audio_meta}
 ┠ <b>Video Metadata</b> → {display_video_meta}
-┖ <b>Subtitle Metadata</b> → {display_subtitle_meta}"""
+┠ <b>Subtitle Metadata</b> → {display_subtitle_meta}
+┖ <b>Merge Video</b> → <b>{merge_video_status}</b>"""
 
     elif stype == "advanced":
         buttons.data_button(
@@ -1326,6 +1339,8 @@ async def edit_user_settings(client, query):
             back_to = "gdrive"
         elif data[3] in ["USER_TOKENS", "USE_DEFAULT_COOKIE"]:
             back_to = "general"
+        elif data[3] == "MERGE_VIDEO":
+            back_to = "ffset"
         else:
             back_to = "leech"
         await update_user_settings(query, stype=back_to)

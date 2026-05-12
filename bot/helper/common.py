@@ -49,6 +49,7 @@ from .ext_utils.media_utils import (
     get_document_type,
     take_ss,
 )
+from .ext_utils.merge_utils import MergeVideos
 from .ext_utils.metadata_utils import MetadataProcessor
 from .mirror_leech_utils.gdrive_utils.list import GoogleDriveList
 from .mirror_leech_utils.rclone_utils.list import RcloneList
@@ -121,6 +122,7 @@ class TaskConfig:
         self.private_link = False
         self.stop_duplicate = False
         self.sample_video = False
+        self.merge_video = False
         self.convert_audio = False
         self.convert_video = False
         self.screen_shots = False
@@ -295,6 +297,10 @@ class TaskConfig:
                 or "STOP_DUPLICATE" not in self.user_dict
                 and Config.STOP_DUPLICATE
             )
+        if not self.merge_video:
+            self.merge_video = bool(self.user_dict.get("MERGE_VIDEO", False))
+
+        if not self.is_leech:
             default_upload = (
                 self.user_dict.get("DEFAULT_UPLOAD", "") or Config.DEFAULT_UPLOAD
             )
@@ -1095,6 +1101,18 @@ class TaskConfig:
                             move(res, f"{new_folder}/SAMPLE.{file_}"),
                         )
                         return new_folder
+        return dl_path
+
+    async def proceed_merge(self, dl_path, gid):
+        if self.is_file:
+            return dl_path
+        merger = MergeVideos(self)
+        self.progress = False
+        async with cpu_eater_lock:
+            self.progress = True
+            await merger.merge(dl_path, gid)
+        if self.is_cancelled:
+            return False
         return dl_path
 
     async def proceed_compress(self, dl_path, gid):

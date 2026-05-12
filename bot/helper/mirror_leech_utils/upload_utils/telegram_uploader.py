@@ -174,15 +174,15 @@ class TelegramUploader:
         cap_file_ = file_ = pre_file_
 
         if self._lprefix:
-            cap_file_ = self._lprefix.replace(r"\s", " ") + file_
-            self._lprefix = re_sub(r"<.*?>", "", self._lprefix).replace(r"\s", " ")
+            cap_file_ = self._lprefix.replace(r"\s", " ").rstrip() + " " + file_
+            self._lprefix = re_sub(r"<.*?>", "", self._lprefix).replace(r"\s", " ").rstrip()
             if not file_.startswith(self._lprefix):
-                file_ = f"{self._lprefix}{file_}"
+                file_ = f"{self._lprefix} {file_}"
 
         if self._lsuffix:
             name, ext = ospath.splitext(cap_file_)
-            cap_file_ = name + self._lsuffix.replace(r"\s", " ") + ext
-            self._lsuffix = re_sub(r"<.*?>", "", self._lsuffix).replace(r"\s", " ")
+            self._lsuffix = re_sub(r"<.*?>", "", self._lsuffix).replace(r"\s", " ").lstrip()
+            cap_file_ = name + " " + self._lsuffix + ext
 
         cap_mono = (
             f"<{Config.LEECH_FONT}>{cap_file_}</{Config.LEECH_FONT}>"
@@ -244,12 +244,12 @@ class TelegramUploader:
                 name = file_
                 ext = ""
             if self._lsuffix:
-                ext = f"{self._lsuffix}{ext}"
+                ext = f" {self._lsuffix}{ext}"
             name = name[: 255 - len(ext)]
             file_ = f"{name}{ext}"
         elif self._lsuffix:
             name, ext = ospath.splitext(file_)
-            file_ = f"{name}{self._lsuffix}{ext}"
+            file_ = f"{name} {self._lsuffix}{ext}"
 
         if pre_file_ != file_:
             new_path = ospath.join(dirpath, file_)

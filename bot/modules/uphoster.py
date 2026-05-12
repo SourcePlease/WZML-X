@@ -97,6 +97,7 @@ class Uphoster(TaskListener):
             "-e": False,
             "-z": False,
             "-sv": False,
+            "-mv": False,
             "-ss": False,
             "-f": False,
             "-fd": False,
@@ -160,6 +161,7 @@ class Uphoster(TaskListener):
         self.thumb = args["-t"]
         self.split_size = args["-sp"]
         self.sample_video = args["-sv"]
+        self.merge_video = args["-mv"]
         self.screen_shots = args["-ss"]
         self.force_run = args["-f"]
         self.force_download = args["-fd"]

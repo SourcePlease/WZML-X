@@ -36,6 +36,7 @@ class MirrorStatus:
     STATUS_FFMPEG = "FFmpeg"
     STATUS_YT = "YouTube"
     STATUS_METADATA = "Metadata"
+    STATUS_MERGING = "Merging"
 
 
 class EngineStatus:
@@ -73,6 +74,7 @@ STATUSES = {
     "SP": MirrorStatus.STATUS_SPLIT,
     "SV": MirrorStatus.STATUS_SAMVID,
     "FF": MirrorStatus.STATUS_FFMPEG,
+    "MG": MirrorStatus.STATUS_MERGING,
     "PA": MirrorStatus.STATUS_PAUSED,
     "CK": MirrorStatus.STATUS_CHECK,
 }

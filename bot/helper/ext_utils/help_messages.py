@@ -159,6 +159,12 @@ Create sample video for one video or folder of videos.
 /cmd -sv (it will take the default values which 60sec sample duration and part duration is 4sec).
 You can control those values. Example: /cmd -sv 70:5(sample-duration:part-duration) or /cmd -sv :5 or /cmd -sv 70."""
 
+merge_video = """<b>Merge Videos</b>: -mv
+
+Merge all videos in a folder into a single .mkv file using ffmpeg concat.
+/cmd link -mv
+Note: Only works on folders with multiple video files. Files are sorted naturally before merging."""
+
 screenshot = """<b>ScreenShots</b>: -ss
 
 Create screenshots for one video or folder of videos.
@@ -298,6 +304,7 @@ YT_HELP_DICT = {
     "Rclone-Flags": rcf,
     "Bulk": bulk,
     "Sample-Video": sample_video,
+    "Merge-Video": merge_video,
     "Screenshot": screenshot,
     "Convert-Media": convert_media,
     "Force-Start": force_start,
@@ -328,6 +335,7 @@ MIRROR_HELP_DICT = {
     "Rclone-DL": rlone_dl,
     "Tg-Links": tg_links,
     "Sample-Video": sample_video,
+    "Merge-Video": merge_video,
     "Screenshot": screenshot,
     "Convert-Media": convert_media,
     "Force-Start": force_start,
