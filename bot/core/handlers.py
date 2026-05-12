@@ -64,14 +64,14 @@ def add_handlers():
         MessageHandler(
             cancel,
             filters=regex(rf"^/{BotCommands.CancelTaskCommand[1]}?(?:_\w+).*$")
-            & CustomFilters.authorized,
+           # & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             cancel_all_buttons,
             filters=command(BotCommands.CancelAllCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+            & CustomFilters.sudo,
         )
     )
     TgClient.bot.add_handler(
@@ -84,7 +84,7 @@ def add_handlers():
         MessageHandler(
             clone_node,
             filters=command(BotCommands.CloneCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
@@ -112,7 +112,7 @@ def add_handlers():
         MessageHandler(
             select,
             filters=command(BotCommands.SelectCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
@@ -122,28 +122,28 @@ def add_handlers():
         MessageHandler(
             remove_from_queue,
             filters=command(BotCommands.ForceStartCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             count_node,
             filters=command(BotCommands.CountCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             delete_file,
             filters=command(BotCommands.DeleteCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             gdrive_search,
             filters=command(BotCommands.ListCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
@@ -154,70 +154,70 @@ def add_handlers():
         MessageHandler(
             mirror,
             filters=command(BotCommands.MirrorCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             qb_mirror,
             filters=command(BotCommands.QbMirrorCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             jd_mirror,
             filters=command(BotCommands.JdMirrorCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             nzb_mirror,
             filters=command(BotCommands.NzbMirrorCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             leech,
             filters=command(BotCommands.LeechCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             qb_leech,
             filters=command(BotCommands.QbLeechCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             jd_leech,
             filters=command(BotCommands.JdLeechCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             nzb_leech,
             filters=command(BotCommands.NzbLeechCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+        #    & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             uphoster,
             filters=command(BotCommands.UpHosterCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+        #    & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             get_rss_menu,
             filters=command(BotCommands.RssCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(CallbackQueryHandler(rss_listener, filters=regex("^rss")))
@@ -275,7 +275,7 @@ def add_handlers():
         MessageHandler(
             imdb_search,
             filters=command(BotCommands.IMDBCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
@@ -285,21 +285,21 @@ def add_handlers():
         MessageHandler(
             ping,
             filters=command(BotCommands.PingCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             bot_help,
             filters=command(BotCommands.HelpCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             mediainfo,
             filters=command(BotCommands.MediaInfoCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
 
@@ -307,14 +307,14 @@ def add_handlers():
         MessageHandler(
             bot_stats,
             filters=command(BotCommands.StatsCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             task_status,
             filters=command(BotCommands.StatusCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
@@ -327,7 +327,7 @@ def add_handlers():
         MessageHandler(
             torrent_search,
             filters=command(BotCommands.SearchCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
@@ -344,7 +344,7 @@ def add_handlers():
         MessageHandler(
             send_user_settings,
             filters=command(BotCommands.UserSetCommand, case_sensitive=True)
-            & CustomFilters.authorized_uset,
+         #   & CustomFilters.authorized_uset,
         )
     )
     TgClient.bot.add_handler(
@@ -354,21 +354,21 @@ def add_handlers():
         MessageHandler(
             ytdl,
             filters=command(BotCommands.YtdlCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+          #  & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             ytdl_leech,
             filters=command(BotCommands.YtdlLeechCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+        #    & CustomFilters.authorized,
         )
     )
     TgClient.bot.add_handler(
         MessageHandler(
             hydra_search,
             filters=command(BotCommands.NzbSearchCommand, case_sensitive=True)
-            & CustomFilters.authorized,
+         #   & CustomFilters.authorized,
         )
     )
     if Config.SET_COMMANDS:
@@ -420,4 +420,4 @@ def add_handlers():
                 for cmds in [getattr(BotCommands, f"{cmd}Command", None)]
                 if cmds is not None
             ]
-        )
+    )
